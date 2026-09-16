@@ -14,7 +14,9 @@ class CurlRequest implements HttpRequest
      */
     public function __construct()
     {
-        $this->handle = curl_init();
+        // major * 10000 + minor * 100 + patch
+        if (PHP_VERSION_ID < 80000)
+            $this->handle = curl_init();
     }
 
     /**
