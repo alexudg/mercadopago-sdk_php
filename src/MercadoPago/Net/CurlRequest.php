@@ -54,7 +54,9 @@ class CurlRequest implements HttpRequest
      */
     public function close(): void
     {
-        curl_close($this->handle);
+        // major * 10000 + minor * 100 + patch
+        if (PHP_VERSION_ID < 80000)
+            curl_close($this->handle);
     }
 
     /**
